@@ -1,4 +1,4 @@
-@import '../../styles/index.scss';
+@import "../../styles/index.scss";
 
 .contact {
   width: 400px;
@@ -9,8 +9,7 @@
   margin: auto;
   padding: 30px;
   margin-top: 50px;
-  margin-bottom: 12rem; // correction affichage pour footer en bas de page; remplace : 150px
-
+  margin-bottom: 12rem;
 
   &__form {
     display: flex;
@@ -19,7 +18,6 @@
   }
 
   &__title {
-
     font-size: 16px;
     width: 100%;
     text-align: center;
@@ -29,7 +27,6 @@
   }
 
   &__submit {
-
     width: 250px;
     padding: 15px;
     background-color: map-get(map-get($themes, "light"), "base1");
@@ -47,7 +44,6 @@
   }
 
   &__input {
-
     background-color: map-get(map-get($themes, "light"), "base6");
     height: 30px;
     border-radius: 5px;
@@ -57,12 +53,11 @@
     font-weight: 300;
   }
 
-  &__group{
+  &__group {
     display: flex;
     flex-wrap: wrap;
     max-width: 100%;
     margin-bottom: 15px;
-
   }
 
   &__message {
@@ -73,8 +68,7 @@
   &__email {
     display: block;
     margin-bottom: 10px;
-
-  } 
+  }
 
   &__input__message {
     background-color: map-get(map-get($themes, "light"), "base6");
@@ -86,8 +80,7 @@
     font-weight: 300;
   }
 
-  @media (max-width: $desktop_width) { 
-
+  @media (max-width: $desktop_width) {
     width: 90%;
     background-color: map-get(map-get($themes, "light"), "base0");
     box-shadow: 0px 4px 40px 8px rgba(0, 0, 0, 0.1);
@@ -97,6 +90,5 @@
     padding: 30px;
     margin-top: 50px;
     margin-bottom: 12rem; // correction affichage pour footer en bas de page; remplace : 150px
-
-}
+  }
 }
