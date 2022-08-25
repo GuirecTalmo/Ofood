@@ -30,7 +30,6 @@ const login = (email, password) =>
     });
 const logout = () => {
   localStorage.removeItem("user");
-  //remove les images des recettes des cookies locaux pour éviter qu'une grille d'un user ne se retrouve chez un nouveau user
   removeCookie("_ga_M8JRPG77BV");
   return axios.post(`${API_URL}logout`).then((response) => response.data);
 };
