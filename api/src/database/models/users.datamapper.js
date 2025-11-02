@@ -118,7 +118,10 @@ const usersDataMapper = {
    * @throws {APIError} if the table user is empty
    */
    async GetUsers(){
-    const query = `SELECT * FROM "users";`;
+    const query = {
+      text: `SELECT * FROM "users";`,
+      values: []
+    };
     const results = await client.query(query);
 
     debug(results.rows)

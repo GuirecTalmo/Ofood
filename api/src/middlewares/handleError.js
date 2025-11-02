@@ -24,11 +24,24 @@ const debug = require('debug')('Error_Handler');
       myError = new APIError(err, req.url);
     }
   
-    // gestion des logs pour la plateforme (pour nous)
-    await myError.log();
-  
-    // gestion du retour utilisateur
-    res.status(myError.status).json(myError.message);
+  // gestion des logs pour la plateforme (pour nous)
+  await myError.log();
+
+  // gestion du retour utilisateur
+  // Ne pas exposer le message d'erreur détaillé en production
+  const isProduction = process.env.NODE_ENV === "production";
+  const errorResponse = isProduction
+    ? {
+        error: "Une erreur est survenue",
+        status: myError.status,
+      }
+    : {
+        error: myError.message,
+        status: myError.status,
+        url: myError.url,
+      };
+
+  res.status(myError.status).json(errorResponse);
   };
   
   module.exports = handleError;

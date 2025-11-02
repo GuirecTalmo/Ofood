@@ -5,7 +5,10 @@ const APIError = require("../../Errors/APIError");
 const recipesDataMapper = {
 
   async getAllRecipes() {
-    const query = "SELECT * FROM recipes;";
+    const query = {
+      text: "SELECT * FROM recipes;",
+      values: []
+    };
     const results = await client.query(query);
     if (!results.rowCount) {
       throw new APIError("No recipe saved yet", 404);
