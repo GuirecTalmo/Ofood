@@ -18,7 +18,7 @@ const createJwtToken = ({ user = null}) => {
   const jwtToken = jwt.sign({ 
     sub: user.id.toString(),
     // Math.floor(Date.now() / 1000)- > ~ 1seconde, donc + 5 = durée de 5 secondes( 60*60 1min)
-    exp: Math.floor(Date.now() / 1000) + 5 
+    exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24) // 24 heures 
   }, secret );
 
   //{httpOnly:true}
@@ -47,7 +47,7 @@ const extractUserFromToken = async (req, res, next) => {
       //verif et décodage (recup du contenu du payload) -> Methode synchrone, si pas de passage de méthode de callback
 
      // debug('debut décodage')
-     let decodedToken = jwt.verify(token, secret, { ignoreExpiration: true });
+     let decodedToken = jwt.verify(token, secret); // Respecte l'expiration
 
      //fonction à debug plus tard
      //decodedToken = checkExpirationToken(decodedToken, res);

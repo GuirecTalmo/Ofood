@@ -2,9 +2,8 @@ const debug = require('debug')('User_Controller');
 const usersDataMapper = require('../database/models/users.datamapper');
 const specificsDietDataMapper = require('../database/models/specificsDiet.datamapper');
 const APIError = require('../Errors/APIError');
-
-//temporaire
-const jwt=require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const env = require(`../env/${process.env.NODE_ENV}`);
 
 const usersController = {
   async postNewUser(req, res) {
@@ -60,7 +59,7 @@ const usersController = {
     // intolerances:Obj_UpdateUser.intolerances
     token: jwt.sign(
       {userId:result.id},       
-      'RANDOM_TOKEN_SECRET',  
+      env.JWT_SECRET,  
       {expiresIn:'24h'})
     }      
 
@@ -99,7 +98,7 @@ const usersController = {
   async getUserByID(req, res){
     const _id = req.params.id;
     const results = await usersDataMapper.getUserByID(_id);
-    console.log(results);
+    debug('User by ID:', results);
     res.status(200).json(results);
   },
 

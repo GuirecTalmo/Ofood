@@ -1,0 +1,26 @@
+# Copier ce fichier vers .env et modifier les valeurs
+
+# Server Configuration
+NODE_ENV=pg_conf
+PORT=3001
+DOCKER_ENV=false
+
+# PostgreSQL Development
+POSTGRES_USER=ofood
+POSTGRES_PASSWORD=change_me_in_production
+POSTGRES_DB=ofood
+POSTGRES_HOST=postgresql
+POSTGRES_PORT=5432
+
+# PostgreSQL Production (Heroku example)
+# POSTGRES_HOST=your-heroku-host
+# POSTGRES_PORT=5432
+
+# JWT Secret (GENERATE A STRONG SECRET - MINIMUM 32 CHARACTERS)
+# Utiliser: openssl rand -base64 32
+# ou: node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
+JWT_SECRET=change_me_to_a_strong_secret_minimum_32_characters_long
+
+# Frontend URL
+FRONTEND_URL=http://localhost:3000
+

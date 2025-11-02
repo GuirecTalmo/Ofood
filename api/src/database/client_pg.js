@@ -1,6 +1,7 @@
 const { Client } = require("pg");
+const debug = require("debug")("Database_Client");
 
-const env = require(`../env/${process.env.NODE_ENV}`)
+const env = require(`../env/${process.env.NODE_ENV}`);
 const client = new Client(`postgresql://${env.DB_USER}:${env.DB_PASS}@${env.DB_HOST}:${env.DB_PORT}/${env.DB_NAME}`);
 
 
@@ -10,11 +11,10 @@ if (process.env.NODE_ENV === 'pg_conf'){
     
     client.connect()
             .then(()=>{
-                console.log('connexion db postgres de dev ok ');
+                debug('Connexion DB postgres de dev OK');
             })
             .catch((err)=>{
-                
-                console.log(err);
+                debug('Erreur connexion DB dev:', err);
             })
 
             
@@ -22,11 +22,10 @@ if (process.env.NODE_ENV === 'pg_conf'){
             
             client.connect()
             .then(()=>{
-                console.log('connexion db prod ok ');
+                debug('Connexion DB prod OK');
             })
             .catch((err)=>{
-                
-                console.log(err);
+                debug('Erreur connexion DB prod:', err);
             })
             
  }
@@ -42,18 +41,17 @@ if (process.env.NODE_ENV === 'pg_conf'){
              host:`${env.DB_HOST}`,
     database:`${env.DB_NAME}`,
     port:5432,
-    ssl: {
-            rejectUnauthorized: false,
-    },
+    ssl: process.env.NODE_ENV === "production" 
+      ? { rejectUnauthorized: true }
+      : { rejectUnauthorized: false },
     });
 
     client.connect()
             .then(()=>{
-                    console.log('connexion db distante heroku ok ');
+                    debug('Connexion DB distante Heroku OK');
                 })
                 .catch((err)=>{
-        
-                console.log(err);
+                    debug('Erreur connexion DB Heroku:', err);
             })
 
 
